@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+/.vs
+/Emuander/.vs/Emuander/v15
+/Emuander/readme
+/bin/
+/Emuander/obj/x64
+/Emuander/Emuander.vcxproj.user
