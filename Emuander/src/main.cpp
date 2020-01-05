@@ -1,30 +1,32 @@
 #include<iostream>
+#include<fstream>
 
 #include"CComputer.h"
+#include"CIOHelper.h"
 
 int main()
 {
-	Neander::CComputer neanderEmulator;
+	Neander::CComputer neanderComputer;
 
 	std::array<uint8_t, Neander::CComputer::ms_cMemorySize> exampleProgram;
 
-	// Zero initialize memory
-	std::fill(exampleProgram.begin(), exampleProgram.end(), 0);
+	Neander::CIOHelper::EIOCode loadStatus = 
+		Neander::CIOHelper::LoadProgramFromFile("/home/lain/projects/Emuander/teste.mem", exampleProgram);
 
-	exampleProgram[0] = 32u;
-	exampleProgram[1] = 128u;
-	exampleProgram[2] = 255u;
+	if (loadStatus == Neander::CIOHelper::EIOCode::SUCCESS)
+	{
+		neanderComputer.setMemory(exampleProgram);
 
-	neanderEmulator.setMemory(exampleProgram);
+		neanderComputer.runProgram();
 
-	neanderEmulator.runProgram();
+		Neander::SRegisters registersRead(neanderComputer.getRegisters());
 
-	Neander::SRegisters registersRead(neanderEmulator.getRegisters());
+		Neander::CIOHelper::PrintRegisters(registersRead);
 
-	std::cout << "ACC: " << static_cast<int>(registersRead.m_accumulator) << std::endl;
-	std::cout << "PC : " << static_cast<int>(registersRead.m_programCounter) << std::endl;
-	std::cout << "NEG: " << static_cast<int>(registersRead.m_negativeCondition) << std::endl;
-	std::cout << "ZER: " << static_cast<int>(registersRead.m_zeroCondition) << std::endl;
+		Neander::CIOHelper::SaveProgramToFile(
+			neanderComputer.getMemory(),
+			"/home/lain/projects/Emuander/testeOut2.mem");
+	}
 
 	return 0;
 }

@@ -77,49 +77,75 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\</SourcePath>
+    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\</SourcePath>
+    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\</SourcePath>
+    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\</SourcePath>
+    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\</SourcePath>
+    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\</SourcePath>
+    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\</SourcePath>
+    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\</SourcePath>
+    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="src\CComputer.cpp" />
+    <ClCompile Include="src\CIOHelper.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CComputer.h" />
+    <ClInclude Include="include\CIOHelper.h" />
     <ClInclude Include="include\SRegisters.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -129,6 +155,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>$(ProjectDir)examples\teste.mem;$(ProjectDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
@@ -137,6 +166,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>$(ProjectDir)examples\teste.mem;$(ProjectDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
@@ -145,6 +177,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>$(ProjectDir)examples\teste.mem;$(ProjectDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
@@ -153,6 +188,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>$(ProjectDir)examples\teste.mem;$(ProjectDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -161,6 +199,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>$(ProjectDir)examples\teste.mem;$(ProjectDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -169,6 +210,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>$(ProjectDir)examples\teste.mem;$(ProjectDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
@@ -177,6 +221,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>$(ProjectDir)examples\teste.mem;$(ProjectDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <ClCompile>
@@ -185,6 +232,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>$(ProjectDir)examples\teste.mem;$(ProjectDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

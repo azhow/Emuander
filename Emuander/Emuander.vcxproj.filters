@@ -15,12 +15,18 @@
     <ClCompile Include="src\CComputer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\CIOHelper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CComputer.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\SRegisters.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CIOHelper.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,7 +10,8 @@ namespace Neander
 		std::fill(m_mainMemory.begin(), m_mainMemory.end(), 0);
 	}
 
-	void CComputer::runProgram()
+	void
+		CComputer::runProgram()
 	{
 		// While with initializer?
 		for (EProgramEnd programStatus = EProgramEnd::CONTINUE; (programStatus != EProgramEnd::HALT)
@@ -24,13 +25,15 @@ namespace Neander
 		}
 	}
 
-	void CComputer::updateConditionRegisters()
+	void
+		CComputer::updateConditionRegisters()
 	{
 		m_registers.m_negativeCondition = (m_registers.m_accumulator > 127u);
 		m_registers.m_zeroCondition = (m_registers.m_accumulator == 0u);
 	}
 
-	uint8_t CComputer::fetchInstruction() const
+	uint8_t
+		CComputer::fetchInstruction() const
 	{
 		// Return value
 		uint8_t retVal;
@@ -40,7 +43,8 @@ namespace Neander
 		return retVal;
 	}
 
-	std::function<CComputer::EProgramEnd()> CComputer::decodeInstruction(const uint8_t instruction)
+	std::function<CComputer::EProgramEnd()>
+		CComputer::decodeInstruction(const uint8_t instruction)
 	{
 		// Neander operation function
 		std::function<CComputer::EProgramEnd()> retVal = [this]() { return haltOperation(); };
@@ -128,13 +132,15 @@ namespace Neander
 		return retVal;
 	}
 
-	CComputer::EProgramEnd CComputer::nopOperation()
+	CComputer::EProgramEnd
+		CComputer::nopOperation()
 	{
 		m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::storeOperation(const uint8_t value)
+	CComputer::EProgramEnd
+		CComputer::storeOperation(const uint8_t value)
 	{
 		m_mainMemory[value] = m_registers.m_accumulator;
 		m_registers.m_programCounter++;
@@ -142,16 +148,18 @@ namespace Neander
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::loadOperation(const uint8_t value)
+	CComputer::EProgramEnd
+		CComputer::loadOperation(const uint8_t value)
 	{
-		m_registers.m_accumulator = value;
+		m_registers.m_accumulator = m_mainMemory[value];
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
 		updateConditionRegisters();
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::addOperation(const uint8_t value)
+	CComputer::EProgramEnd
+		CComputer::addOperation(const uint8_t value)
 	{
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator + m_mainMemory[value]);
 		m_registers.m_programCounter++;
@@ -160,7 +168,8 @@ namespace Neander
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::orOperation(const uint8_t value)
+	CComputer::EProgramEnd
+		CComputer::orOperation(const uint8_t value)
 	{
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator | m_mainMemory[value]);
 		m_registers.m_programCounter++;
@@ -169,7 +178,8 @@ namespace Neander
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::andOperation(const uint8_t value)
+	CComputer::EProgramEnd
+		CComputer::andOperation(const uint8_t value)
 	{
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator & m_mainMemory[value]);
 		m_registers.m_programCounter++;
@@ -178,7 +188,8 @@ namespace Neander
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::notOperation()
+	CComputer::EProgramEnd
+		CComputer::notOperation()
 	{
 		m_registers.m_accumulator = static_cast<uint8_t>(~m_registers.m_accumulator);
 		m_registers.m_programCounter++;
@@ -186,13 +197,15 @@ namespace Neander
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::jmpOperation(const uint8_t value)
+	CComputer::EProgramEnd
+		CComputer::jmpOperation(const uint8_t value)
 	{
 		m_registers.m_programCounter = value;
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::jnOperation(const uint8_t value)
+	CComputer::EProgramEnd
+		CComputer::jnOperation(const uint8_t value)
 	{
 		// Contant uint8_t 2
 		const uint8_t c_2ui8(static_cast<uint8_t>(2));
@@ -203,7 +216,8 @@ namespace Neander
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::jzOperation(const uint8_t value)
+	CComputer::EProgramEnd
+		CComputer::jzOperation(const uint8_t value)
 	{
 		// Contant uint8_t 2
 		const uint8_t c_2ui8(static_cast<uint8_t>(2));
@@ -214,7 +228,8 @@ namespace Neander
 		return EProgramEnd::CONTINUE;
 	}
 
-	CComputer::EProgramEnd CComputer::haltOperation()
+	CComputer::EProgramEnd
+		CComputer::haltOperation()
 	{
 		m_registers.m_programCounter++;
 		return EProgramEnd::HALT;
