@@ -12,12 +12,15 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\CNeanderComputer.cpp">
+    <ClCompile Include="src\CComputer.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\CNeanderComputer.h">
+    <ClInclude Include="include\CComputer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SRegisters.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
