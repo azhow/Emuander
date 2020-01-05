@@ -116,4 +116,32 @@ namespace Neander
 		std::cout << "NEG: " << static_cast<int>(registersToPrint.m_negativeCondition) << std::endl;
 		std::cout << "ZER: " << static_cast<int>(registersToPrint.m_zeroCondition) << std::endl;
 	}
+
+	CIOHelper::EIOCode
+		CIOHelper::RunNeander(const std::filesystem::path& inputFile, const std::filesystem::path& outputFile)
+	{
+		// Return value
+		EIOCode retVal(EIOCode::UNKNOWN_ERROR);
+
+		// Neander computer instance
+		Neander::CComputer neanderComputer;
+
+		// Input memory
+		std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+		retVal = CIOHelper::LoadProgramFromFile(inputFile, inputMemory);
+
+		if (retVal == Neander::CIOHelper::EIOCode::SUCCESS)
+		{
+			neanderComputer.setMemory(inputMemory);
+
+			neanderComputer.runProgram();
+
+			CIOHelper::PrintRegisters(neanderComputer.getRegisters());
+
+			retVal = CIOHelper::SaveProgramToFile(neanderComputer.getMemory(), outputFile);
+		}
+
+		return retVal;
+	}
 }

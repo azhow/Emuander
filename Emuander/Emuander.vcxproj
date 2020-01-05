@@ -144,6 +144,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\args.hxx" />
     <ClInclude Include="include\CComputer.h" />
     <ClInclude Include="include\CIOHelper.h" />
     <ClInclude Include="include\SRegisters.h" />

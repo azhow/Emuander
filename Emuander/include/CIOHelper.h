@@ -34,6 +34,10 @@ namespace Neander
 
 		// Print the program registers
 		static void PrintRegisters(const SRegisters& registersToPrint);
+
+		// Run Neander
+		static EIOCode RunNeander(
+			const std::filesystem::path& inputFile, const std::filesystem::path& outputFile);
 	};
 }
 

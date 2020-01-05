@@ -7,6 +7,9 @@
     <Filter Include="include">
       <UniqueIdentifier>{42152646-e35e-45f4-adf8-025f07116d90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{833cd24e-5ff8-49e4-a097-94a282c6019c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -28,6 +31,9 @@
     </ClInclude>
     <ClInclude Include="include\CIOHelper.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\args.hxx">
+      <Filter>lib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
