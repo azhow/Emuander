@@ -1,6 +1,11 @@
 # Emuander
-Neander emulator implemented on C++.
+Neander emulator implemented using C++.
 
-## This emulator will be implemented using interpretation technique of emulation.
+## Features
+1. Cross-platform support (Windows and Linux);
+2. Command Line Interface to use;
 
-## In the future, it is planned to receive a GUI also.
+## How to use:
+```
+Emuander.exe -i input_memory_file.mem -o output_memory_file.mem
+```
