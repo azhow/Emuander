@@ -42,3 +42,6 @@
 /Emuander/.vs
 /Emuander Linux/obj/x64/Debug
 /x64/Debug
+/Emuander Linux/obj/x64/Release
+/Emuander Windows/x64/Release
+/x64/Release
