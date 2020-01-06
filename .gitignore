@@ -40,3 +40,5 @@
 /Emuander Windows/x64/Debug
 /Emuander Windows/Emuander Windows.vcxproj.user
 /Emuander/.vs
+/Emuander Linux/obj/x64/Debug
+/x64/Debug

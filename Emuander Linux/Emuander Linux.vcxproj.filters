@@ -2,14 +2,25 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="src">
-      <UniqueIdentifier>{e8fe2d5b-916a-462f-bacb-9078da44ebe2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include">
-      <UniqueIdentifier>{42152646-e35e-45f4-adf8-025f07116d90}</UniqueIdentifier>
+      <UniqueIdentifier>{8fbdd674-18c8-4f78-9170-37b3f7df55db}</UniqueIdentifier>
     </Filter>
     <Filter Include="lib">
-      <UniqueIdentifier>{833cd24e-5ff8-49e4-a097-94a282c6019c}</UniqueIdentifier>
+      <UniqueIdentifier>{0d21fe8f-0f80-414a-b9a8-18a20f46e3d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{04fc2f0d-2962-49c9-a0cf-7e17b7cb6fc9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\CComputer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CIOHelper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\CComputer.h">
@@ -24,16 +35,5 @@
     <ClInclude Include="..\include\args.hxx">
       <Filter>lib</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\src\CComputer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\CIOHelper.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
