@@ -43,6 +43,7 @@
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
     <LinuxProjectType>{D51BCBC9-82E9-4017-911E-C93873C4EA2B}</LinuxProjectType>
+    <ProjectName>Emuander Linux</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
@@ -75,83 +76,83 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <LibraryPath>$(ProjectDir)..\include\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include\</IncludePath>
+    <SourcePath>$(ProjectDir)..\src\;</SourcePath>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <LibraryPath>$(ProjectDir)..\include\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include\</IncludePath>
+    <SourcePath>$(ProjectDir)..\src\;</SourcePath>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <LibraryPath>$(ProjectDir)..\include\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include\</IncludePath>
+    <SourcePath>$(ProjectDir)..\src\;</SourcePath>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <LibraryPath>$(ProjectDir)..\include\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include\</IncludePath>
+    <SourcePath>$(ProjectDir)..\src\;</SourcePath>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <LibraryPath>$(ProjectDir)..\include\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include\</IncludePath>
+    <SourcePath>$(ProjectDir)..\src\;</SourcePath>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <LibraryPath>$(ProjectDir)..\include\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include\</IncludePath>
+    <SourcePath>$(ProjectDir)..\src\;</SourcePath>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <LibraryPath>$(ProjectDir)..\include\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include\</IncludePath>
+    <SourcePath>$(ProjectDir)..\src\;</SourcePath>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <LibraryPath>$(ProjectDir)include\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\</IncludePath>
-    <SourcePath>$(ProjectDir)src\;</SourcePath>
+    <LibraryPath>$(ProjectDir)..\include\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include\</IncludePath>
+    <SourcePath>$(ProjectDir)..\src\;</SourcePath>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely)</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="src\CComputer.cpp" />
-    <ClCompile Include="src\CIOHelper.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClInclude Include="..\include\args.hxx" />
+    <ClInclude Include="..\include\CComputer.h" />
+    <ClInclude Include="..\include\CIOHelper.h" />
+    <ClInclude Include="..\include\SRegisters.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\args.hxx" />
-    <ClInclude Include="include\CComputer.h" />
-    <ClInclude Include="include\CIOHelper.h" />
-    <ClInclude Include="include\SRegisters.h" />
+    <ClCompile Include="..\src\CComputer.cpp" />
+    <ClCompile Include="..\src\CIOHelper.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++17</CppLanguageStandard>
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -162,7 +163,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++17</CppLanguageStandard>
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -173,7 +174,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++17</CppLanguageStandard>
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -184,7 +185,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++17</CppLanguageStandard>
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -195,7 +196,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++17</CppLanguageStandard>
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -206,7 +207,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++17</CppLanguageStandard>
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -217,7 +218,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++17</CppLanguageStandard>
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -228,7 +229,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++17</CppLanguageStandard>
       <CompileAs>CompileAsCpp</CompileAs>
       <TreatWarningAsError>true</TreatWarningAsError>

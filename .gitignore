@@ -36,3 +36,7 @@
 /bin/
 /Emuander/obj/x64
 /Emuander/Emuander.vcxproj.user
+/Emuander/x64/Debug
+/Emuander Windows/x64/Debug
+/Emuander Windows/Emuander Windows.vcxproj.user
+/Emuander/.vs

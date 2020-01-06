@@ -3,36 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Emuander", "Emuander.vcxproj", "{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Emuander Linux", "Emuander.vcxproj", "{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Emuander Windows", "..\Emuander Windows\Emuander Windows.vcxproj", "{2D613385-7B6B-4622-81BF-5FB53FCD40CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|ARM = Debug|ARM
-		Debug|ARM64 = Debug|ARM64
 		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|ARM = Release|ARM
-		Release|ARM64 = Release|ARM64
 		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Debug|ARM.ActiveCfg = Debug|ARM
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Debug|ARM.Build.0 = Debug|ARM
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Debug|ARM64.Build.0 = Debug|ARM64
 		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Debug|x64.ActiveCfg = Debug|x64
 		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Debug|x64.Build.0 = Debug|x64
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Debug|x86.ActiveCfg = Debug|x86
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Debug|x86.Build.0 = Debug|x86
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Release|ARM.ActiveCfg = Release|ARM
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Release|ARM.Build.0 = Release|ARM
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Release|ARM64.ActiveCfg = Release|ARM64
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Release|ARM64.Build.0 = Release|ARM64
 		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Release|x64.ActiveCfg = Release|x64
 		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Release|x64.Build.0 = Release|x64
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Release|x86.ActiveCfg = Release|x86
-		{A2A1D6A7-4641-4705-91F6-F18B5BEC9191}.Release|x86.Build.0 = Release|x86
+		{2D613385-7B6B-4622-81BF-5FB53FCD40CC}.Debug|x64.ActiveCfg = Debug|x64
+		{2D613385-7B6B-4622-81BF-5FB53FCD40CC}.Debug|x64.Build.0 = Debug|x64
+		{2D613385-7B6B-4622-81BF-5FB53FCD40CC}.Release|x64.ActiveCfg = Release|x64
+		{2D613385-7B6B-4622-81BF-5FB53FCD40CC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
