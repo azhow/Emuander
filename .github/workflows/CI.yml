@@ -13,5 +13,5 @@ jobs:
       - name: Setup MSBuild.exe
         uses: warrenbuckley/Setup-MSBuild@v1
       
-      - name: MSBuild
-        run: msbuild Emuander.sln /t:"Emuander Windows" /p:Configuration="Release" /p:Platform="x64"
+      - name: Build Windows Project
+        run: msbuild Emuander.sln /t:Rebuild /t:"Emuander Windows" /p:Configuration="Release" /p:Platform="x64"
