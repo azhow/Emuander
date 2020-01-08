@@ -176,9 +176,6 @@
     <ProjectReference Include="..\EmuanderCore Windows\EmuanderCore Windows.vcxproj">
       <Project>{9aad26d6-c69f-4092-8838-1d8e57abf106}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Emuander\Emuander.vcxproj">
-      <Project>{a65d5f3e-ca8a-4be3-9d50-be3270312ca6}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
