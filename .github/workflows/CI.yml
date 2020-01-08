@@ -9,5 +9,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: build
-        run: msbuild .\Emuander.sln
+      
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+      
+      - name: MSBuild
+        run: msbuild Emuander.sln /t:"Emuander Windows" /p:Configuration="Release" /p:Platform="x64"
