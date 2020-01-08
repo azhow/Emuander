@@ -35,9 +35,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{493e8aba-699e-4d34-9ec6-cc0609d76890}</ProjectGuid>
+    <ProjectGuid>{f81d16ea-1bf3-429f-944d-8eb1fd62e65d}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>Emuander_Linux</RootNamespace>
+    <RootNamespace>EmuanderCore_Linux</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
@@ -59,10 +59,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <RemoteRootDir>./projects/$(SolutionName)/</RemoteRootDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <RemoteRootDir>./projects/$(SolutionName)/</RemoteRootDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
@@ -77,57 +79,43 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <RemoteProjectDir>$(RemoteRootDir)</RemoteProjectDir>
+    <OutDir>Libs/$(Platform)/$(Configuration)/</OutDir>
     <IncludePath>$(SolutionDir)include;</IncludePath>
-    <LibraryPath>Libs/$(Platform)/$(Configuration)/;</LibraryPath>
+    <LibraryPath>$(SolutionDir)include;</LibraryPath>
     <SourcePath>$(SolutionDir)src;</SourcePath>
-    <OutDir>bin/$(Platform)/$(Configuration)/</OutDir>
+    <RemoteProjectDir>$(RemoteRootDir)</RemoteProjectDir>
+    <TargetName>libEmuanderCore</TargetName>
     <IntDir>temp/obj/$(Platform)/$(Configuration)/</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <RemoteProjectDir>$(RemoteRootDir)</RemoteProjectDir>
+    <OutDir>Libs/$(Platform)/$(Configuration)/</OutDir>
     <IncludePath>$(SolutionDir)include;</IncludePath>
-    <LibraryPath>Libs/$(Platform)/$(Configuration)/;</LibraryPath>
+    <LibraryPath>$(SolutionDir)include;</LibraryPath>
     <SourcePath>$(SolutionDir)src;</SourcePath>
-    <OutDir>bin/$(Platform)/$(Configuration)/</OutDir>
+    <RemoteProjectDir>$(RemoteRootDir)</RemoteProjectDir>
+    <TargetName>libEmuanderCore</TargetName>
     <IntDir>temp/obj/$(Platform)/$(Configuration)/</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\main.cpp" />
+    <ClInclude Include="..\include\CComputer.h" />
+    <ClInclude Include="..\include\CIOHelper.h" />
+    <ClInclude Include="..\include\SRegisters.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\args.hxx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EmuanderCore Linux\EmuanderCore Linux.vcxproj">
-      <Project>{f81d16ea-1bf3-429f-944d-8eb1fd62e65d}</Project>
-    </ProjectReference>
+    <ClCompile Include="..\src\CComputer.cpp" />
+    <ClCompile Include="..\src\CIOHelper.cpp" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <CppLanguageStandard>c++17</CppLanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <CppLanguageStandard>c++17</CppLanguageStandard>
     </ClCompile>
-    <PreBuildEvent>
-      <AdditionalSourcesToCopyMapping>$(SolutionDir)examples\teste.mem;$(SolutionDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
-    </PreBuildEvent>
-    <Link>
-      <LibraryDependencies>EmuanderCore</LibraryDependencies>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <CppLanguageStandard>c++17</CppLanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <CppLanguageStandard>c++17</CppLanguageStandard>
     </ClCompile>
-    <PreBuildEvent>
-      <AdditionalSourcesToCopyMapping>$(SolutionDir)examples\teste.mem;$(SolutionDir)examples\testeOut.mem</AdditionalSourcesToCopyMapping>
-    </PreBuildEvent>
-    <Link>
-      <LibraryDependencies>EmuanderCore</LibraryDependencies>
-    </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

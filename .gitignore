@@ -45,3 +45,11 @@
 /Emuander Linux/obj/x64/Release
 /Emuander Windows/x64/Release
 /x64/Release
+/Emuander Linux/projects/Emuander/temp/obj/x64/Debug
+/Emuander Linux/projects/temp/obj/x64/Debug
+/Emuander Linux/temp/obj/x64/Debug
+/Emuander Linux/~
+*.user
+/EmuanderCore Linux/temp/obj/x64/Debug
+/temp/obj/x64
+/Tests/x64/Release

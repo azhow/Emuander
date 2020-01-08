@@ -7,31 +7,13 @@
     <Filter Include="lib">
       <UniqueIdentifier>{0d21fe8f-0f80-414a-b9a8-18a20f46e3d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include">
-      <UniqueIdentifier>{04fc2f0d-2962-49c9-a0cf-7e17b7cb6fc9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\CComputer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\CIOHelper.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\CComputer.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\CIOHelper.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SRegisters.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\args.hxx">
       <Filter>lib</Filter>
     </ClInclude>

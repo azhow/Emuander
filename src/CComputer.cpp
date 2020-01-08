@@ -22,6 +22,7 @@ namespace Neander
 			// Operation to be done
 			const std::function<CComputer::EProgramEnd()> operation(decodeInstruction(instruction));
 			programStatus = executeInstruction(operation);
+			updateConditionRegisters();
 		}
 	}
 
@@ -154,7 +155,6 @@ namespace Neander
 		m_registers.m_accumulator = m_mainMemory[value];
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
-		updateConditionRegisters();
 		return EProgramEnd::CONTINUE;
 	}
 
@@ -164,7 +164,6 @@ namespace Neander
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator + m_mainMemory[value]);
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
-		updateConditionRegisters();
 		return EProgramEnd::CONTINUE;
 	}
 
@@ -174,7 +173,6 @@ namespace Neander
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator | m_mainMemory[value]);
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
-		updateConditionRegisters();
 		return EProgramEnd::CONTINUE;
 	}
 
@@ -184,7 +182,6 @@ namespace Neander
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator & m_mainMemory[value]);
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
-		updateConditionRegisters();
 		return EProgramEnd::CONTINUE;
 	}
 

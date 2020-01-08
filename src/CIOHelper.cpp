@@ -124,14 +124,14 @@ namespace Neander
 		EIOCode retVal(EIOCode::UNKNOWN_ERROR);
 
 		// Neander computer instance
-		Neander::CComputer neanderComputer;
+		CComputer neanderComputer;
 
 		// Input memory
 		std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
 
 		retVal = CIOHelper::LoadProgramFromFile(inputFile, inputMemory);
 
-		if (retVal == Neander::CIOHelper::EIOCode::SUCCESS)
+		if (retVal == CIOHelper::EIOCode::SUCCESS)
 		{
 			neanderComputer.setMemory(inputMemory);
 
