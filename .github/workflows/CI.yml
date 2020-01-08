@@ -17,4 +17,4 @@ jobs:
         run: msbuild Emuander.sln /t:"Emuander Windows":Rebuild /p:Configuration="Release" /p:Platform="x64" /v:minimal
       
       - name: Run Tests
-        run: & '.\x64\Release\Emuander Windows.exe' -i .\examples\teste.mem -o .\Out.mem
+        run: .\x64\Release\"Emuander Windows.exe" -i .\examples\teste.mem -o .\Out.mem
