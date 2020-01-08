@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-	// Main return value 22
+	// Main return value
 	int retValue(0);
 
 	// CLI arguments

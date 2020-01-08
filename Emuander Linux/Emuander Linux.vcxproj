@@ -79,19 +79,19 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <RemoteProjectDir>$(RemoteRootDir)</RemoteProjectDir>
     <IncludePath>$(SolutionDir)include;</IncludePath>
-    <LibraryPath>Libs/$(Platform)/$(Configuration)/;</LibraryPath>
+    <LibraryPath>Output/Libraries/$(Platform)/$(Configuration)/;</LibraryPath>
     <SourcePath>$(SolutionDir)src;</SourcePath>
-    <OutDir>bin/$(Platform)/$(Configuration)/</OutDir>
-    <IntDir>temp/obj/$(Platform)/$(Configuration)/</IntDir>
+    <OutDir>Output/Binary/$(Platform)/$(Configuration)/</OutDir>
+    <IntDir>Output/Temp/obj/$(Platform)/$(Configuration)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <RemoteProjectDir>$(RemoteRootDir)</RemoteProjectDir>
     <IncludePath>$(SolutionDir)include;</IncludePath>
-    <LibraryPath>Libs/$(Platform)/$(Configuration)/;</LibraryPath>
+    <LibraryPath>Output/Libraries/$(Platform)/$(Configuration)/;</LibraryPath>
     <SourcePath>$(SolutionDir)src;</SourcePath>
-    <OutDir>bin/$(Platform)/$(Configuration)/</OutDir>
-    <IntDir>temp/obj/$(Platform)/$(Configuration)/</IntDir>
+    <OutDir>Output/Binary/$(Platform)/$(Configuration)/</OutDir>
+    <IntDir>Output/Temp/obj/$(Platform)/$(Configuration)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemGroup>

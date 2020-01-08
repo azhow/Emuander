@@ -79,22 +79,22 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>Libs/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>Output/Libraries/$(Platform)/$(Configuration)/</OutDir>
     <IncludePath>$(SolutionDir)include;</IncludePath>
     <LibraryPath>$(SolutionDir)include;</LibraryPath>
     <SourcePath>$(SolutionDir)src;</SourcePath>
     <RemoteProjectDir>$(RemoteRootDir)</RemoteProjectDir>
     <TargetName>libEmuanderCore</TargetName>
-    <IntDir>temp/obj/$(Platform)/$(Configuration)/</IntDir>
+    <IntDir>Output/Temp/obj/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>Libs/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>Output/Libraries/$(Platform)/$(Configuration)/</OutDir>
     <IncludePath>$(SolutionDir)include;</IncludePath>
     <LibraryPath>$(SolutionDir)include;</LibraryPath>
     <SourcePath>$(SolutionDir)src;</SourcePath>
     <RemoteProjectDir>$(RemoteRootDir)</RemoteProjectDir>
     <TargetName>libEmuanderCore</TargetName>
-    <IntDir>temp/obj/$(Platform)/$(Configuration)/</IntDir>
+    <IntDir>Output/Temp/obj/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <ItemGroup>
     <ClInclude Include="..\include\CComputer.h" />
