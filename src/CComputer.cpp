@@ -4,7 +4,7 @@
 namespace Neander
 {
 	CComputer::CComputer() :
-		m_registers()
+		m_registers(0, 0, false, false)
 	{
 		// Zero initialize memory
 		std::fill(m_mainMemory.begin(), m_mainMemory.end(), 0);

@@ -14,6 +14,22 @@ namespace Neander
 	class CComputer
 	{
 	public:
+		// Neander computer supported operations
+		enum class EOperations : uint8_t
+		{
+			NOP = 0u,   // No operation
+			STA = 16u,  // Store to address
+			LDA = 32u,  // Load from address
+			ADD = 48u,  // Add address content with ACC
+			OR = 64u,  // Binary Or address content with ACC
+			AND = 80u,  // Binary And address content with ACC
+			NOT = 96u,  // Inverts all bits of the ACC
+			JMP = 128u, // Set PC to address
+			JN = 144u, // Set PC if Negative register is on
+			JZ = 160u, // Set PC if Zero register is on
+			HLT = 240u  // Halts execution
+		};
+
 		// Memory size in bytes
 		static inline const std::size_t ms_cMemorySize = 256;
 
@@ -41,21 +57,6 @@ namespace Neander
 			CONTINUE = 1 // Program continue execution
 		};
 		
-		enum class EOperations : uint8_t
-		{
-			NOP = 0u,   // No operation
-			STA = 16u,  // Store to address
-			LDA = 32u,  // Load from address
-			ADD = 48u,  // Add address content with ACC
-			OR  = 64u,  // Binary Or address content with ACC
-			AND = 80u,  // Binary And address content with ACC
-			NOT = 96u,  // Inverts all bits of the ACC
-			JMP = 128u, // Set PC to address
-			JN  = 144u, // Set PC if Negative register is on
-			JZ  = 160u, // Set PC if Zero register is on
-			HLT = 240u  // Halts execution
-		};
-
 		// Update condition registers
 		void updateConditionRegisters();
 
