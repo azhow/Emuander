@@ -190,7 +190,6 @@ namespace Neander
 	{
 		m_registers.m_accumulator = static_cast<uint8_t>(~m_registers.m_accumulator);
 		m_registers.m_programCounter++;
-		m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 

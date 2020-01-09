@@ -212,7 +212,7 @@ namespace Neander
 				Assert::AreEqual(c_finalRegs.m_zeroCondition, false, L"ZERO has wrong value.");
 
 				// Check memory
-				// Memory cannot change when executing LDA
+				// Memory cannot change when executing
 				for (int idx = 0; idx < c_outputMemory.size(); idx++)
 				{
 					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
@@ -270,7 +270,7 @@ namespace Neander
 				Assert::AreEqual(c_finalRegs.m_zeroCondition, false, L"ZERO has wrong value.");
 
 				// Check memory
-				// Memory cannot change when executing LDA
+				// Memory cannot change when executing
 				for (int idx = 0; idx < c_outputMemory.size(); idx++)
 				{
 					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
@@ -292,7 +292,7 @@ namespace Neander
 				const uint8_t c_valueMemoryAdd(64);
 
 				// ADD Instruction, sums ACC (128) with 128
-				inputMemory[0] = static_cast<uint8_t>(CComputer::EOperations::ADD);
+				inputMemory[0] = 63;
 				inputMemory[1] = c_valueMemoryAdd;
 				// HLT Instruction
 				inputMemory[2] = static_cast<uint8_t>(CComputer::EOperations::HLT);
@@ -328,7 +328,341 @@ namespace Neander
 				Assert::AreEqual(c_finalRegs.m_zeroCondition, true, L"ZERO has wrong value.");
 
 				// Check memory
-				// Memory cannot change when executing LDA
+				// Memory cannot change when executing
+				for (int idx = 0; idx < c_outputMemory.size(); idx++)
+				{
+					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
+				}
+			}
+
+			TEST_METHOD(OR_Instruction_1)
+			{
+				// Neander computer instance
+				CComputer neanderComputer;
+
+				// Input memory
+				std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+				// Zero initializes memory
+				std::fill(inputMemory.begin(), inputMemory.end(), 0);
+
+				// Value Memory address
+				const uint8_t c_valueMemoryAdd(64);
+
+				// OR Instruction, OR ACC (00110011) with 11001100
+				inputMemory[0] = static_cast<uint8_t>(CComputer::EOperations::OR);
+				inputMemory[1] = c_valueMemoryAdd;
+				// HLT Instruction
+				inputMemory[2] = static_cast<uint8_t>(CComputer::EOperations::HLT);
+
+				// ACC Desired value
+				const uint8_t c_accFinalValue(0b11111111);
+
+				// Test value final value
+				inputMemory[c_valueMemoryAdd] = 0b11001100;
+
+				neanderComputer.setRegisters(SRegisters(0b00110011, 0, false, false));
+
+				neanderComputer.setMemory(inputMemory);
+
+				neanderComputer.runProgram();
+
+				// Final registers values
+				const SRegisters c_finalRegs(neanderComputer.getRegisters());
+
+				// Final memory values
+				const std::array<uint8_t, CComputer::ms_cMemorySize> c_outputMemory(neanderComputer.getMemory());
+
+				// Assert ACC value
+				Assert::AreEqual(c_finalRegs.m_accumulator, c_accFinalValue, L"ACC has wrong value.");
+
+				// Assert PC value
+				Assert::AreEqual(static_cast<int>(c_finalRegs.m_programCounter), 3, L"PC has wrong value.");
+
+				// Assert NEG flag
+				Assert::AreEqual(c_finalRegs.m_negativeCondition, true, L"NEG has wrong value.");
+
+				// Assert Zero flag
+				Assert::AreEqual(c_finalRegs.m_zeroCondition, false, L"ZERO has wrong value.");
+
+				// Check memory
+				// Memory cannot change when executing
+				for (int idx = 0; idx < c_outputMemory.size(); idx++)
+				{
+					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
+				}
+			}
+
+			TEST_METHOD(OR_Instruction_2)
+			{
+				// Neander computer instance
+				CComputer neanderComputer;
+
+				// Input memory
+				std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+				// Zero initializes memory
+				std::fill(inputMemory.begin(), inputMemory.end(), 0);
+
+				// Value Memory address
+				const uint8_t c_valueMemoryAdd(64);
+
+				// OR Instruction, OR ACC (00000000) with 10101010
+				inputMemory[0] = 79;
+				inputMemory[1] = c_valueMemoryAdd;
+				// HLT Instruction
+				inputMemory[2] = static_cast<uint8_t>(CComputer::EOperations::HLT);
+
+				// ACC Desired value
+				const uint8_t c_accFinalValue(0b10101010);
+
+				// Test value final value
+				inputMemory[c_valueMemoryAdd] = 0b10101010;
+
+				neanderComputer.setRegisters(SRegisters(0b00000000, 0, false, false));
+
+				neanderComputer.setMemory(inputMemory);
+
+				neanderComputer.runProgram();
+
+				// Final registers values
+				const SRegisters c_finalRegs(neanderComputer.getRegisters());
+
+				// Final memory values
+				const std::array<uint8_t, CComputer::ms_cMemorySize> c_outputMemory(neanderComputer.getMemory());
+
+				// Assert ACC value
+				Assert::AreEqual(c_finalRegs.m_accumulator, c_accFinalValue, L"ACC has wrong value.");
+
+				// Assert PC value
+				Assert::AreEqual(static_cast<int>(c_finalRegs.m_programCounter), 3, L"PC has wrong value.");
+
+				// Assert NEG flag
+				Assert::AreEqual(c_finalRegs.m_negativeCondition, true, L"NEG has wrong value.");
+
+				// Assert Zero flag
+				Assert::AreEqual(c_finalRegs.m_zeroCondition, false, L"ZERO has wrong value.");
+
+				// Check memory
+				// Memory cannot change when executing
+				for (int idx = 0; idx < c_outputMemory.size(); idx++)
+				{
+					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
+				}
+			}
+
+			TEST_METHOD(AND_Instruction_1)
+			{
+				// Neander computer instance
+				CComputer neanderComputer;
+
+				// Input memory
+				std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+				// Zero initializes memory
+				std::fill(inputMemory.begin(), inputMemory.end(), 0);
+
+				// Value Memory address
+				const uint8_t c_valueMemoryAdd(64);
+
+				// AND Instruction, ACC (10100000) with 10101010
+				inputMemory[0] = static_cast<uint8_t>(CComputer::EOperations::AND);
+				inputMemory[1] = c_valueMemoryAdd;
+				// HLT Instruction
+				inputMemory[2] = static_cast<uint8_t>(CComputer::EOperations::HLT);
+
+				// ACC Desired value
+				const uint8_t c_accFinalValue(0b10100000);
+
+				// Test value final value
+				inputMemory[c_valueMemoryAdd] = 0b10101010;
+
+				neanderComputer.setRegisters(SRegisters(0b10100000, 0, false, false));
+
+				neanderComputer.setMemory(inputMemory);
+
+				neanderComputer.runProgram();
+
+				// Final registers values
+				const SRegisters c_finalRegs(neanderComputer.getRegisters());
+
+				// Final memory values
+				const std::array<uint8_t, CComputer::ms_cMemorySize> c_outputMemory(neanderComputer.getMemory());
+
+				// Assert ACC value
+				Assert::AreEqual(c_finalRegs.m_accumulator, c_accFinalValue, L"ACC has wrong value.");
+
+				// Assert PC value
+				Assert::AreEqual(static_cast<int>(c_finalRegs.m_programCounter), 3, L"PC has wrong value.");
+
+				// Assert NEG flag
+				Assert::AreEqual(c_finalRegs.m_negativeCondition, true, L"NEG has wrong value.");
+
+				// Assert Zero flag
+				Assert::AreEqual(c_finalRegs.m_zeroCondition, false, L"ZERO has wrong value.");
+
+				// Check memory
+				// Memory cannot change when executing
+				for (int idx = 0; idx < c_outputMemory.size(); idx++)
+				{
+					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
+				}
+			}
+
+			TEST_METHOD(AND_Instruction_2)
+			{
+				// Neander computer instance
+				CComputer neanderComputer;
+
+				// Input memory
+				std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+				// Zero initializes memory
+				std::fill(inputMemory.begin(), inputMemory.end(), 0);
+
+				// Value Memory address
+				const uint8_t c_valueMemoryAdd(64);
+
+				// AND Instruction, ACC (00000000) with 10101010
+				inputMemory[0] = 95;
+				inputMemory[1] = c_valueMemoryAdd;
+				// HLT Instruction
+				inputMemory[2] = static_cast<uint8_t>(CComputer::EOperations::HLT);
+
+				// ACC Desired value
+				const uint8_t c_accFinalValue(0b00000000);
+
+				// Test value final value
+				inputMemory[c_valueMemoryAdd] = 0b10101010;
+
+				neanderComputer.setRegisters(SRegisters(0b00000000, 0, false, false));
+
+				neanderComputer.setMemory(inputMemory);
+
+				neanderComputer.runProgram();
+
+				// Final registers values
+				const SRegisters c_finalRegs(neanderComputer.getRegisters());
+
+				// Final memory values
+				const std::array<uint8_t, CComputer::ms_cMemorySize> c_outputMemory(neanderComputer.getMemory());
+
+				// Assert ACC value
+				Assert::AreEqual(c_finalRegs.m_accumulator, c_accFinalValue, L"ACC has wrong value.");
+
+				// Assert PC value
+				Assert::AreEqual(static_cast<int>(c_finalRegs.m_programCounter), 3, L"PC has wrong value.");
+
+				// Assert NEG flag
+				Assert::AreEqual(c_finalRegs.m_negativeCondition, false, L"NEG has wrong value.");
+
+				// Assert Zero flag
+				Assert::AreEqual(c_finalRegs.m_zeroCondition, true, L"ZERO has wrong value.");
+
+				// Check memory
+				// Memory cannot change when executing
+				for (int idx = 0; idx < c_outputMemory.size(); idx++)
+				{
+					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
+				}
+			}
+
+			TEST_METHOD(NOT_Instruction_1)
+			{
+				// Neander computer instance
+				CComputer neanderComputer;
+
+				// Input memory
+				std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+				// Zero initializes memory
+				std::fill(inputMemory.begin(), inputMemory.end(), 0);
+
+				// NOT Instruction, ACC (00000000)
+				inputMemory[0] = static_cast<uint8_t>(CComputer::EOperations::NOT);
+				// HLT Instruction
+				inputMemory[1] = static_cast<uint8_t>(CComputer::EOperations::HLT);
+
+				// ACC Desired value
+				const uint8_t c_accFinalValue(0b11111111);
+
+				neanderComputer.setRegisters(SRegisters(0b00000000, 0, false, false));
+
+				neanderComputer.setMemory(inputMemory);
+
+				neanderComputer.runProgram();
+
+				// Final registers values
+				const SRegisters c_finalRegs(neanderComputer.getRegisters());
+
+				// Final memory values
+				const std::array<uint8_t, CComputer::ms_cMemorySize> c_outputMemory(neanderComputer.getMemory());
+
+				// Assert ACC value
+				Assert::AreEqual(c_finalRegs.m_accumulator, c_accFinalValue, L"ACC has wrong value.");
+
+				// Assert PC value
+				Assert::AreEqual(static_cast<int>(c_finalRegs.m_programCounter), 2, L"PC has wrong value.");
+
+				// Assert NEG flag
+				Assert::AreEqual(c_finalRegs.m_negativeCondition, true, L"NEG has wrong value.");
+
+				// Assert Zero flag
+				Assert::AreEqual(c_finalRegs.m_zeroCondition, false, L"ZERO has wrong value.");
+
+				// Check memory
+				// Memory cannot change when executing
+				for (int idx = 0; idx < c_outputMemory.size(); idx++)
+				{
+					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
+				}
+			}
+
+			TEST_METHOD(NOT_Instruction_2)
+			{
+				// Neander computer instance
+				CComputer neanderComputer;
+
+				// Input memory
+				std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+				// Zero initializes memory
+				std::fill(inputMemory.begin(), inputMemory.end(), 0);
+
+				// NOT Instruction, ACC (11111111)
+				inputMemory[0] = 127;
+				// HLT Instruction
+				inputMemory[1] = static_cast<uint8_t>(CComputer::EOperations::HLT);
+
+				// ACC Desired value
+				const uint8_t c_accFinalValue(0b00000000);
+
+				neanderComputer.setRegisters(SRegisters(0b11111111, 0, false, false));
+
+				neanderComputer.setMemory(inputMemory);
+
+				neanderComputer.runProgram();
+
+				// Final registers values
+				const SRegisters c_finalRegs(neanderComputer.getRegisters());
+
+				// Final memory values
+				const std::array<uint8_t, CComputer::ms_cMemorySize> c_outputMemory(neanderComputer.getMemory());
+
+				// Assert ACC value
+				Assert::AreEqual(c_finalRegs.m_accumulator, c_accFinalValue, L"ACC has wrong value.");
+
+				// Assert PC value
+				Assert::AreEqual(static_cast<int>(c_finalRegs.m_programCounter), 2, L"PC has wrong value.");
+
+				// Assert NEG flag
+				Assert::AreEqual(c_finalRegs.m_negativeCondition, false, L"NEG has wrong value.");
+
+				// Assert Zero flag
+				Assert::AreEqual(c_finalRegs.m_zeroCondition, true, L"ZERO has wrong value.");
+
+				// Check memory
+				// Memory cannot change when executing
 				for (int idx = 0; idx < c_outputMemory.size(); idx++)
 				{
 					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
