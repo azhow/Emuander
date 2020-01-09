@@ -1,0 +1,17 @@
+name: Windows Build CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+      
+      - name: Build Windows Project
+        run: msbuild Emuander.sln /t:"Applications\Emuander Windows":Rebuild /p:Configuration="Release" /p:Platform="x64" /v:minimal
