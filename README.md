@@ -3,6 +3,8 @@ Neander emulator implemented using C++.
 
 ![](https://github.com/azhow/Emuander/workflows/Windows%20Build%20CI/badge.svg)
 
+![](https://github.com/azhow/Emuander/workflows/Unitests/badge.svg)
+
 ## Features
 1. Cross-platform support (Windows and Linux);
 2. Command Line Interface to use;
