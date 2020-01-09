@@ -20,12 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\CComputer.h" />
-    <ClInclude Include="..\include\CIOHelper.h" />
     <ClInclude Include="..\include\SRegisters.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\CComputer.cpp" />
-    <ClCompile Include="..\src\CIOHelper.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

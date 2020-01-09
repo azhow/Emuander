@@ -98,12 +98,10 @@
   </PropertyGroup>
   <ItemGroup>
     <ClInclude Include="..\include\CComputer.h" />
-    <ClInclude Include="..\include\CIOHelper.h" />
     <ClInclude Include="..\include\SRegisters.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\CComputer.cpp" />
-    <ClCompile Include="..\src\CIOHelper.cpp" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

@@ -12,14 +12,23 @@
     <Filter Include="lib">
       <UniqueIdentifier>{3d3c9861-557c-4213-bc7d-477d25143835}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{181a6d3a-967b-45f6-b1ca-42c80f986be9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\args.hxx">
       <Filter>lib</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\CIOHelper.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CIOHelper.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

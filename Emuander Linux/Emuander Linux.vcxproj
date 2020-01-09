@@ -95,10 +95,12 @@
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\CIOHelper.cpp" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\args.hxx" />
+    <ClInclude Include="..\include\CIOHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmuanderCore Linux\EmuanderCore Linux.vcxproj">

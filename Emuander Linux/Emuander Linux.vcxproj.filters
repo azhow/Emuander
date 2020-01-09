@@ -7,15 +7,24 @@
     <Filter Include="lib">
       <UniqueIdentifier>{0d21fe8f-0f80-414a-b9a8-18a20f46e3d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{62f5c8f2-5a6a-4293-8baf-0bf58d8c4f44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CIOHelper.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\args.hxx">
       <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CIOHelper.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
