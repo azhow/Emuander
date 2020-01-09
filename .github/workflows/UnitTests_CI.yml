@@ -9,6 +9,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/checkout@master
       
     - name: Setup VSTest.Console.exe
       uses: malcolmnixon/Setup-VSTest@master
