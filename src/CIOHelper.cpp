@@ -117,6 +117,13 @@ namespace Neander
 		std::cout << "ZER: " << static_cast<int>(registersToPrint.m_zeroCondition) << std::endl;
 	}
 
+	void
+		CIOHelper::PrintCounters(const uint64_t memAccesses, const uint64_t instructionsExecuted)
+	{
+		std::cout << "Memory Accesses      : " << memAccesses << std::endl;
+		std::cout << "Instructions Executed: " << instructionsExecuted << std::endl;
+	}
+
 	CIOHelper::EIOCode
 		CIOHelper::RunNeander(const std::filesystem::path& inputFile, const std::filesystem::path& outputFile)
 	{
@@ -138,6 +145,7 @@ namespace Neander
 			neanderComputer.runProgram();
 
 			CIOHelper::PrintRegisters(neanderComputer.getRegisters());
+			CIOHelper::PrintCounters(neanderComputer.getMemoryAccesses(), neanderComputer.getInstructionsExecuted());
 
 			retVal = CIOHelper::SaveProgramToFile(neanderComputer.getMemory(), outputFile);
 		}

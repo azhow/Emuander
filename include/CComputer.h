@@ -4,7 +4,6 @@
 // C++ Includes
 #include <array>
 #include <utility>
-#include <optional>
 #include <functional>
 // Homemade Includes
 #include "SRegisters.h"
@@ -43,10 +42,23 @@ namespace Neander
 		inline std::array<uint8_t, ms_cMemorySize> getMemory() const { return m_mainMemory; };
 
 		// Set the registers contents
-		inline void setRegisters(SRegisters newRegisters) { m_registers = newRegisters; };
+		inline void setRegisters(SRegisters newRegisters)
+		{
+			// Reset counters
+			m_memAccessCounter = 0;
+			m_instructionCounter = 0;
+			m_registers = newRegisters;
+			updateConditionRegisters();
+		};
 
 		// Get the registers contents
 		inline SRegisters getRegisters() const { return m_registers; };
+
+		// Get memory accesses counter
+		inline uint64_t getMemoryAccesses() const { return m_memAccessCounter; };
+
+		// Get instructions executed counter
+		inline uint64_t getInstructionsExecuted() const { return m_instructionCounter; };
 
 		// Run the contents of the memory in a while Fetch->Decode->Read->Execute
 		void runProgram();
@@ -116,6 +128,12 @@ namespace Neander
 
 		// Main memory is the program running or nothing at all
 		std::array<uint8_t, ms_cMemorySize> m_mainMemory;
+
+		// Counts the number of memory accesses
+		uint64_t m_memAccessCounter;
+		
+		// Counts the number of instructions
+		uint64_t m_instructionCounter;
 	};
 }
 

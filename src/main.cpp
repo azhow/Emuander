@@ -40,7 +40,9 @@ int main(int argc, char **argv)
 	if (inputPath && outputPath)
 	{
 		std::cout << "Running Neander..." << std::endl;
+		std::cout << std::endl;
 		Neander::CIOHelper::EIOCode neanderStatus = Neander::CIOHelper::RunNeander(args::get(inputPath), args::get(outputPath));
+		std::cout << std::endl;
 		switch (neanderStatus)
 		{
 		case Neander::CIOHelper::EIOCode::SUCCESS:

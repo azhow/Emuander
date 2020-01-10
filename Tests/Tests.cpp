@@ -1,6 +1,7 @@
 #include "CppUnitTest.h"
 #include <array>
 #include <algorithm>
+#include <optional>
 
 #include "CComputer.h"
 
@@ -1079,6 +1080,56 @@ namespace Neander
 				{
 					Assert::AreEqual(c_outputMemory[idx], inputMemory[idx], L"Input and output memory are different.");
 				}
+			}
+		};
+
+		TEST_CLASS(ComputerCounterTests)
+		{
+		public:
+			TEST_METHOD(Instruction_Counter)
+			{
+				// Expected final instruction count value
+				const uint64_t c_expectedValue(255);
+
+				// Neander computer instance
+				CComputer neanderComputer;
+
+				// Input memory
+				std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+				// Zero initializes memory
+				std::fill(inputMemory.begin(), inputMemory.end(), 0);
+
+				neanderComputer.setMemory(inputMemory);
+
+				neanderComputer.runProgram();
+
+				// Assert Instruction counter value
+				Assert::AreEqual(
+					neanderComputer.getInstructionsExecuted(), c_expectedValue, L"Number of executed instructions is wrong.");
+			}
+
+			TEST_METHOD(Memory_Accesses_Counter)
+			{
+				// Expected final instruction count value
+				const uint64_t c_expectedValue(255);
+
+				// Neander computer instance
+				CComputer neanderComputer;
+
+				// Input memory
+				std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+				// Zero initializes memory
+				std::fill(inputMemory.begin(), inputMemory.end(), 0);
+
+				neanderComputer.setMemory(inputMemory);
+
+				neanderComputer.runProgram();
+
+				// Assert Instruction counter value
+				Assert::AreEqual(
+					neanderComputer.getMemoryAccesses(), c_expectedValue, L"Number of memory accesses is wrong.");
 			}
 		};
 	}

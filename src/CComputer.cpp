@@ -4,7 +4,9 @@
 namespace Neander
 {
 	CComputer::CComputer() :
-		m_registers(0, 0, false, false)
+		m_registers(0, 0, false, false),
+		m_memAccessCounter(0),
+		m_instructionCounter(0)
 	{
 		// Zero initialize memory
 		std::fill(m_mainMemory.begin(), m_mainMemory.end(), 0);
@@ -19,10 +21,14 @@ namespace Neander
 		{
 			// Instruction to be executed
 			const uint8_t instruction(fetchInstruction());
+			// Fetching an instruction we access the memory one time
+			m_memAccessCounter++;
 			// Operation to be done
 			const std::function<CComputer::EProgramEnd()> operation(decodeInstruction(instruction));
 			programStatus = executeInstruction(operation);
 			updateConditionRegisters();
+			// Executed exactly one instruction
+			m_instructionCounter++;
 		}
 	}
 
@@ -144,6 +150,10 @@ namespace Neander
 		CComputer::storeOperation(const uint8_t value)
 	{
 		m_mainMemory[value] = m_registers.m_accumulator;
+		// Next byte accessed
+		m_memAccessCounter++;
+		// Store location accessed
+		m_memAccessCounter++;
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
@@ -153,6 +163,10 @@ namespace Neander
 		CComputer::loadOperation(const uint8_t value)
 	{
 		m_registers.m_accumulator = m_mainMemory[value];
+		// Next byte accessed
+		m_memAccessCounter++;
+		// Load location accessed
+		m_memAccessCounter++;
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
@@ -162,6 +176,10 @@ namespace Neander
 		CComputer::addOperation(const uint8_t value)
 	{
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator + m_mainMemory[value]);
+		// Next byte accessed
+		m_memAccessCounter++;
+		// Memory address accessed
+		m_memAccessCounter++;
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
@@ -171,6 +189,10 @@ namespace Neander
 		CComputer::orOperation(const uint8_t value)
 	{
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator | m_mainMemory[value]);
+		// Next byte accessed
+		m_memAccessCounter++;
+		// Memory address accessed
+		m_memAccessCounter++;
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
@@ -180,6 +202,10 @@ namespace Neander
 		CComputer::andOperation(const uint8_t value)
 	{
 		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator & m_mainMemory[value]);
+		// Next byte accessed
+		m_memAccessCounter++;
+		// Memory address accessed
+		m_memAccessCounter++;
 		m_registers.m_programCounter++;
 		m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
@@ -197,6 +223,8 @@ namespace Neander
 		CComputer::jmpOperation(const uint8_t value)
 	{
 		m_registers.m_programCounter = value;
+		// Next byte accessed
+		m_memAccessCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
@@ -208,6 +236,8 @@ namespace Neander
 		(m_registers.m_accumulator >= 128u) ? 
 			m_registers.m_programCounter = value : 
 			m_registers.m_programCounter = static_cast<uint8_t>(m_registers.m_programCounter + c_2ui8);
+		// Next byte accessed
+		m_memAccessCounter++;
 
 		return EProgramEnd::CONTINUE;
 	}
@@ -220,6 +250,8 @@ namespace Neander
 		(m_registers.m_accumulator == 0u) ?
 			m_registers.m_programCounter = value : 
 			m_registers.m_programCounter = static_cast<uint8_t>(m_registers.m_programCounter + c_2ui8);
+		// Next byte accessed
+		m_memAccessCounter++;
 
 		return EProgramEnd::CONTINUE;
 	}

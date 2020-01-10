@@ -35,6 +35,9 @@ namespace Neander
 		// Print the program registers
 		static void PrintRegisters(const SRegisters& registersToPrint);
 
+		// Print the program counters
+		static void PrintCounters(const uint64_t memAccesses, const uint64_t instructionsExecuted);
+
 		// Run Neander
 		static EIOCode RunNeander(
 			const std::filesystem::path& inputFile, const std::filesystem::path& outputFile);
