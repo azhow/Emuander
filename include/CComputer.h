@@ -29,6 +29,13 @@ namespace Neander
 			HLT = 240u  // Halts execution
 		};
 
+		// If the program has halted
+		enum class EProgramEnd
+		{
+			HALT = 0, // Program ended
+			CONTINUE = 1 // Program continue execution
+		};
+
 		// Memory size in bytes
 		static inline const std::size_t ms_cMemorySize = 256;
 
@@ -62,13 +69,10 @@ namespace Neander
 
 		// Run the contents of the memory in a while Fetch->Decode->Read->Execute
 		void runProgram();
+
+		// Execute one instruction of the while loop
+		EProgramEnd runStep();
 	private:
-		enum class EProgramEnd
-		{
-			HALT = 0, // Program ended
-			CONTINUE = 1 // Program continue execution
-		};
-		
 		// Update condition registers
 		void updateConditionRegisters();
 

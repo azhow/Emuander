@@ -12,8 +12,10 @@ int main(int argc, char **argv)
 	// CLI arguments
 	args::ArgumentParser parser("Neander Emulator", "Made by: Arthur Zachow Coelho");
 	args::HelpFlag help(parser, "help", "Display this help menu", { 'h', "help" });
-	args::ValueFlag<std::string> inputPath(parser, "input_program_file", "Input program file (.mem)", { 'i' });
-	args::ValueFlag<std::string> outputPath(parser, "output_program_file", "Output memory file (.mem)", { 'o' });
+	args::ValueFlag<std::string> inputPath(parser, "input_program_file", "Input program file (.mem)", { 'i', "input" });
+	args::ValueFlag<std::string> outputPath(parser, "output_program_file", "Output memory file (.mem)", { 'o', "output" });
+	args::Group group(parser, "", args::Group::Validators::DontCare);
+	args::Flag neanderDebug(group, "debug", "Uses the neander in debug mode", { 'd', "debug" });
 
 	try
 	{
@@ -41,8 +43,20 @@ int main(int argc, char **argv)
 	{
 		std::cout << "Running Neander..." << std::endl;
 		std::cout << std::endl;
-		Neander::CIOHelper::EIOCode neanderStatus = Neander::CIOHelper::RunNeander(args::get(inputPath), args::get(outputPath));
-		std::cout << std::endl;
+
+		// Neander Status
+		Neander::CIOHelper::EIOCode neanderStatus(Neander::CIOHelper::EIOCode::UNKNOWN_ERROR);
+
+		if (!neanderDebug)
+		{
+			neanderStatus = Neander::CIOHelper::RunNeander(args::get(inputPath), args::get(outputPath));
+			std::cout << std::endl;
+		}
+		else
+		{
+			neanderStatus = Neander::CIOHelper::RunNeanderDebug(args::get(inputPath), args::get(outputPath), 0);
+		}
+	
 		switch (neanderStatus)
 		{
 		case Neander::CIOHelper::EIOCode::SUCCESS:

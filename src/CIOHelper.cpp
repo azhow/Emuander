@@ -152,4 +152,113 @@ namespace Neander
 
 		return retVal;
 	}
+
+	// Run Neander Debug mode
+	CIOHelper::EIOCode
+		CIOHelper::RunNeanderDebug(
+			const std::filesystem::path& inputFile, const std::filesystem::path& outputFile, const uint8_t breakPoint)
+	{
+		// Return value
+		EIOCode retVal(EIOCode::UNKNOWN_ERROR);
+
+		// Neander computer instance
+		CComputer neanderComputer;
+
+		// Input memory
+		std::array<uint8_t, CComputer::ms_cMemorySize> inputMemory;
+
+		retVal = CIOHelper::LoadProgramFromFile(inputFile, inputMemory);
+
+		if (retVal == CIOHelper::EIOCode::SUCCESS)
+		{
+			CComputer::EProgramEnd programStatus(CComputer::EProgramEnd::CONTINUE);
+
+			neanderComputer.setMemory(inputMemory);
+
+			// User input
+			std::string userCommand;
+
+			std::cout << "Type 'h' for help" << std::endl;
+			do
+			{
+				// Prompts user
+				std::cout << "Neander Debug> ";
+				// Read user command
+				std::cin >> userCommand;
+				std::cout << std::endl;
+
+				// Pre process user command
+				std::for_each(userCommand.begin(), userCommand.end(), [](char & c) { c = ::tolower(c); });
+
+				// Run a step
+				if (userCommand == "s")
+				{
+					programStatus = neanderComputer.runStep();
+					CIOHelper::PrintRegisters(neanderComputer.getRegisters());
+					CIOHelper::PrintCounters(neanderComputer.getMemoryAccesses(), neanderComputer.getInstructionsExecuted());
+					std::cout << std::endl;
+				}
+				// Runs the program till the halt or end of memory
+				else if (userCommand == "r")
+				{
+					neanderComputer.runProgram();
+					programStatus = CComputer::EProgramEnd::HALT;
+					CIOHelper::PrintRegisters(neanderComputer.getRegisters());
+					CIOHelper::PrintCounters(neanderComputer.getMemoryAccesses(), neanderComputer.getInstructionsExecuted());
+					std::cout << std::endl;
+				}
+				// Help
+				else if (userCommand == "h")
+				{
+					std::cout << "Commands List:" << std::endl;
+					std::cout << "s -> Executes one instruction." << std::endl;
+					std::cout << "r -> Runs the program until the end." << std::endl;
+					std::cout << "c -> Runs until the next breakpoint or the end." << std::endl;
+					std::cout << "p -> Prints contents of the add given." << std::endl;
+					std::cout << "h -> Displays this message." << std::endl;
+					std::cout << "q -> Terminates execution." << std::endl;
+					std::cout << std::endl;
+				}
+				// Print content of memory address
+				else if (userCommand == "p")
+				{
+					// Address string
+					std::string addString;
+
+					std::cout << "Address to print: ";
+					std::cin >> addString;
+
+					try
+					{
+						const uint64_t c_address = std::stoi(addString);
+						std::cout << "Address content: " << static_cast<int>(neanderComputer.getMemory()[c_address]) << std::endl;
+					}
+					catch(std::invalid_argument)
+					{
+						std::cout << "Invalid number entered." << std::endl;
+					}
+					catch (std::out_of_range)
+					{
+						std::cout << "The number entered should be between 0 and 255." << std::endl;
+					}
+
+					std::cout << std::endl;
+				}
+				// TODO
+				else
+				{
+					//// While not hit breakpoint and program has not finished
+					//while ((neanderComputer.getRegisters().m_programCounter != breakPoint)
+					//	&& (programStatus == CComputer::EProgramEnd::CONTINUE))
+					//{
+					//	programStatus = neanderComputer.runStep();
+					//}
+				}
+			} while ((userCommand != "q") && (programStatus == CComputer::EProgramEnd::CONTINUE));
+
+			retVal = CIOHelper::SaveProgramToFile(neanderComputer.getMemory(), outputFile);
+		}
+
+		return retVal;
+	}
 }

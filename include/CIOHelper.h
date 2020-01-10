@@ -41,6 +41,10 @@ namespace Neander
 		// Run Neander
 		static EIOCode RunNeander(
 			const std::filesystem::path& inputFile, const std::filesystem::path& outputFile);
+
+		// Run Neander Debug mode
+		static EIOCode RunNeanderDebug(
+			const std::filesystem::path& inputFile, const std::filesystem::path& outputFile, const uint8_t breakPoint);
 	};
 }
 

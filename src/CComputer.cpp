@@ -19,17 +19,28 @@ namespace Neander
 		for (EProgramEnd programStatus = EProgramEnd::CONTINUE; (programStatus != EProgramEnd::HALT)
 			&& (m_registers.m_programCounter != 255u);)
 		{
-			// Instruction to be executed
-			const uint8_t instruction(fetchInstruction());
-			// Fetching an instruction we access the memory one time
-			m_memAccessCounter++;
-			// Operation to be done
-			const std::function<CComputer::EProgramEnd()> operation(decodeInstruction(instruction));
-			programStatus = executeInstruction(operation);
-			updateConditionRegisters();
-			// Executed exactly one instruction
-			m_instructionCounter++;
+			programStatus = runStep();
 		}
+	}
+
+	CComputer::EProgramEnd
+		CComputer::runStep()
+	{
+		// Return value
+		EProgramEnd programStatus(EProgramEnd::CONTINUE);
+
+		// Instruction to be executed
+		const uint8_t instruction(fetchInstruction());
+		// Fetching an instruction we access the memory one time
+		m_memAccessCounter++;
+		// Operation to be done
+		const std::function<CComputer::EProgramEnd()> operation(decodeInstruction(instruction));
+		programStatus = executeInstruction(operation);
+		updateConditionRegisters();
+		// Executed exactly one instruction
+		m_instructionCounter++;
+
+		return programStatus;
 	}
 
 	void
