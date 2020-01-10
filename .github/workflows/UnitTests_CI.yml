@@ -16,7 +16,7 @@ jobs:
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
       
-    - name: Build Windows Project
+    - name: Build Unit Tests
       run: msbuild Emuander.sln /t:"UnitTest\Tests":Rebuild /p:Configuration="Release" /p:Platform="x64" /v:minimal
 
     - name: Run Unit Tests
