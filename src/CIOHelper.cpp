@@ -231,15 +231,22 @@ namespace Neander
 					try
 					{
 						const uint64_t c_address = std::stoi(addString);
-						std::cout << "Address content: " << static_cast<int>(neanderComputer.getMemory()[c_address]) << std::endl;
+						if ((c_address >= 0) && (c_address <= 255))
+						{
+							std::cout << "Address content: " << static_cast<int>(neanderComputer.getMemory()[c_address]) << std::endl;
+						}
+						else
+						{
+							throw std::out_of_range("The number entered should be between 0 and 255.");
+						}
 					}
 					catch(std::invalid_argument)
 					{
 						std::cout << "Invalid number entered." << std::endl;
 					}
-					catch (std::out_of_range)
+					catch (std::out_of_range& e)
 					{
-						std::cout << "The number entered should be between 0 and 255." << std::endl;
+						std::cout << e.what() << std::endl;
 					}
 
 					std::cout << std::endl;
