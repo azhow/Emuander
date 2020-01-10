@@ -13,3 +13,11 @@ Neander emulator implemented using C++.
 ```
 Emuander.exe -i input_memory_file.mem -o output_memory_file.mem
 ```
+
+After successfully running the memory file, it will display the register`s contents and hardware counters.
+
+The registers are the following:
+* ACC = Accumulator;
+* PC  = Program Counter;
+* NEG = Negative Flag, true if the content of ACC is < 0;
+* ZER = Zero Flag, true if the content of ACC is == 0;
