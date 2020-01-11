@@ -20,6 +20,64 @@ int main(int argc, char **argv)
 	try
 	{
 		parser.ParseCLI(argc, argv);
+
+		if (inputPath && outputPath)
+		{
+			std::cout << "Running Neander..." << std::endl;
+			std::cout << std::endl;
+
+			// Neander Status
+			Neander::CIOHelper::EIOCode neanderStatus(Neander::CIOHelper::EIOCode::UNKNOWN_ERROR);
+
+			if (!neanderDebug)
+			{
+				neanderStatus = Neander::CIOHelper::RunNeander(args::get(inputPath), args::get(outputPath));
+				std::cout << std::endl;
+			}
+			else
+			{
+				neanderStatus = Neander::CIOHelper::RunNeanderDebug(args::get(inputPath), args::get(outputPath));
+			}
+
+			switch (neanderStatus)
+			{
+			case Neander::CIOHelper::EIOCode::SUCCESS:
+			{
+				std::cout << "Neander ran successfully." << std::endl;
+				retValue = 0;
+			}
+			break;
+			case Neander::CIOHelper::EIOCode::SAVE_ERROR:
+			{
+				std::cout << "Neander could not save the memory file." << std::endl;
+				retValue = 1;
+			}
+			break;
+			case Neander::CIOHelper::EIOCode::OPEN_ERROR:
+			{
+				std::cout << "Neander could not open the input memory file." << std::endl;
+				retValue = 1;
+			}
+			case Neander::CIOHelper::EIOCode::VALIDATION_ERROR:
+			{
+				std::cout << "The input file is not a Neander Memory file." << std::endl;
+				retValue = 1;
+			}
+			break;
+			case Neander::CIOHelper::EIOCode::UNKNOWN_ERROR:
+			{
+				std::cout << "An unknown error ocurred while running Neander." << std::endl;
+				retValue = 1;
+			}
+			break;
+			}
+		}
+		else
+		{
+			std::cout << "Neander usage:" << std::endl;
+			std::cout << parser;
+			retValue = 0;
+		}
 	}
 	catch (args::Help& e)
 	{
@@ -37,64 +95,6 @@ int main(int argc, char **argv)
 		std::cerr << e.what() << std::endl;
 		std::cerr << parser;
 		retValue = 1;
-	}
-
-	if (inputPath && outputPath)
-	{
-		std::cout << "Running Neander..." << std::endl;
-		std::cout << std::endl;
-
-		// Neander Status
-		Neander::CIOHelper::EIOCode neanderStatus(Neander::CIOHelper::EIOCode::UNKNOWN_ERROR);
-
-		if (!neanderDebug)
-		{
-			neanderStatus = Neander::CIOHelper::RunNeander(args::get(inputPath), args::get(outputPath));
-			std::cout << std::endl;
-		}
-		else
-		{
-			neanderStatus = Neander::CIOHelper::RunNeanderDebug(args::get(inputPath), args::get(outputPath));
-		}
-	
-		switch (neanderStatus)
-		{
-		case Neander::CIOHelper::EIOCode::SUCCESS:
-		{
-			std::cout << "Neander ran successfully." << std::endl;
-			retValue = 0;
-		}
-		break;
-		case Neander::CIOHelper::EIOCode::SAVE_ERROR:
-		{
-			std::cout << "Neander could not save the memory file." << std::endl;
-			retValue = 1;
-		}
-		break;
-		case Neander::CIOHelper::EIOCode::OPEN_ERROR:
-		{
-			std::cout << "Neander could not open the input memory file." << std::endl;
-			retValue = 1;
-		}
-		case Neander::CIOHelper::EIOCode::VALIDATION_ERROR:
-		{
-			std::cout << "The input file is not a Neander Memory file." << std::endl;
-			retValue = 1;
-		}
-		break;
-		case Neander::CIOHelper::EIOCode::UNKNOWN_ERROR:
-		{
-			std::cout << "An unknown error ocurred while running Neander." << std::endl;
-			retValue = 1;
-		}
-		break;
-		}
-	}
-	else
-	{
-		std::cout << "Neander usage:" << std::endl;
-		std::cout << parser;
-		retValue = 0;
 	}
 
 	return retValue;
