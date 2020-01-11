@@ -191,7 +191,7 @@ namespace Neander
 				std::cout << std::endl;
 
 				// Pre process user command
-				std::for_each(userCommand.begin(), userCommand.end(), [](char & c) { c = ::tolower(c); });
+				std::for_each(userCommand.begin(), userCommand.end(), [](char & c) { c = static_cast<char>(::tolower(c)); });
 
 				// Run a step
 				if (userCommand == "s")
@@ -285,7 +285,7 @@ namespace Neander
 				throw std::out_of_range("The number entered should be between 0 and 255.");
 			}
 		}
-		catch (std::invalid_argument)
+		catch (std::invalid_argument&)
 		{
 			std::cout << "Invalid number entered." << std::endl;
 		}
