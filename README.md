@@ -15,15 +15,15 @@ Emuander.exe [-d] -i input_memory_file.mem -o output_memory_file.mem
 ```
 
 Where:
-* -h, --help                        Display this help menu
+* -h, --help                        Display help information
 * -i[input_program_file], --input=[input_program_file]      Input program file (.mem)
 * -o[output_program_file], --output=[output_program_file]    Output memory file (.mem)
-* -d, --debug                       Uses the neander in debug mode
+* -d, --debug                       Executes the Neander program in debug mode
 
 Upon successful execution, the application will display the computer register`s contents and hardware counters.
 
 ### Neander Registers
-The registers are the following:
+The Neander computer has the following registers:
 * ACC = Accumulator;
 * PC  = Program Counter;
 * NEG = Negative Flag, true if the content of ACC is < 0;
