@@ -11,11 +11,18 @@ Neander emulator implemented using C++.
 
 ## How to use:
 ```
-Emuander.exe -i input_memory_file.mem -o output_memory_file.mem
+Emuander.exe [-d] -i input_memory_file.mem -o output_memory_file.mem
 ```
 
-After successfully running the memory file, it will display the register`s contents and hardware counters.
+Where:
+* -h, --help                        Display this help menu
+* -i[input_program_file], --input=[input_program_file]      Input program file (.mem)
+* -o[output_program_file], --output=[output_program_file]    Output memory file (.mem)
+* -d, --debug                       Uses the neander in debug mode
 
+Upon successful execution, the application will display the computer register`s contents and hardware counters.
+
+### Neander Registers
 The registers are the following:
 * ACC = Accumulator;
 * PC  = Program Counter;
