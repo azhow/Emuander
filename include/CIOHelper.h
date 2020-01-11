@@ -4,6 +4,7 @@
 // C++ Includes
 #include <array>
 #include <filesystem>
+#include <set>
 // Homemade Includes
 #include "CComputer.h"
 #include "SRegisters.h"
@@ -32,19 +33,35 @@ namespace Neander
 			const std::array<uint8_t, CComputer::ms_cMemorySize>& program,
 			const std::filesystem::path& filePath);
 
-		// Print the program registers
-		static void PrintRegisters(const SRegisters& registersToPrint);
-
-		// Print the program counters
-		static void PrintCounters(const uint64_t memAccesses, const uint64_t instructionsExecuted);
-
 		// Run Neander
 		static EIOCode RunNeander(
 			const std::filesystem::path& inputFile, const std::filesystem::path& outputFile);
 
 		// Run Neander Debug mode
 		static EIOCode RunNeanderDebug(
-			const std::filesystem::path& inputFile, const std::filesystem::path& outputFile, const uint8_t breakPoint);
+			const std::filesystem::path& inputFile, const std::filesystem::path& outputFile);
+
+	private:
+		// Print the program registers
+		static void PrintRegisters(const SRegisters& registersToPrint);
+
+		// Print the program counters
+		static void PrintCounters(const uint64_t memAccesses, const uint64_t instructionsExecuted);
+
+		// Print debug help information
+		static void PrintHelp();
+
+		// Read a valid neander address
+		static bool ReadAddress(uint8_t& readAdd);
+
+		// Process run step command
+		static CComputer::EProgramEnd ProcessStepCommand(CComputer& neanderComputer);
+
+		// Process run program command
+		static CComputer::EProgramEnd ProcessRunCommand(CComputer& neanderComputer);
+
+		// Process continue command
+		static CComputer::EProgramEnd ProcessContinueCommand(CComputer& neanderComputer, const std::set<uint8_t>& breakpoints);
 	};
 }
 

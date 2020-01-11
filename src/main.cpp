@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 		}
 		else
 		{
-			neanderStatus = Neander::CIOHelper::RunNeanderDebug(args::get(inputPath), args::get(outputPath), 0);
+			neanderStatus = Neander::CIOHelper::RunNeanderDebug(args::get(inputPath), args::get(outputPath));
 		}
 	
 		switch (neanderStatus)
