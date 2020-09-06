@@ -31,30 +31,24 @@
 *.out
 *.app
 /.vs
-/Emuander/.vs/Emuander/v15
-/Emuander/readme
-/bin/
-/Emuander/obj/x64
-/Emuander/Emuander.vcxproj.user
-/Emuander/x64/Debug
-/Emuander Windows/x64/Debug
-/Emuander Windows/Emuander Windows.vcxproj.user
-/Emuander/.vs
-/Emuander Linux/obj/x64/Debug
-/x64/Debug
-/Emuander Linux/obj/x64/Release
-/Emuander Windows/x64/Release
-/x64/Release
-/Emuander Linux/projects/Emuander/temp/obj/x64/Debug
-/Emuander Linux/projects/temp/obj/x64/Debug
-/Emuander Linux/temp/obj/x64/Debug
-/Emuander Linux/~
+VS*Projects/bin/
+VS*Projects/Emuander Windows/x64/Debug
+VS*Projects/Emuander Windows/Emuander Windows.vcxproj.user
+VS*Projects/Emuander Linux/obj/x64/Debug
+VS*Projects/x64/Debug
+VS*Projects/Emuander Linux/obj/x64/Release
+VS*Projects/Emuander Windows/x64/Release
+VS*Projects/x64/Release
+VS*Projects/Emuander Linux/projects/Emuander/temp/obj/x64/Debug
+VS*Projects/Emuander Linux/projects/temp/obj/x64/Debug
+VS*Projects/Emuander Linux/temp/obj/x64/Debug
+VS*Projects/Emuander Linux/~
 *.user
-/EmuanderCore Linux/temp/obj/x64/Debug
+VS*Projects/EmuanderCore Linux/temp/obj/x64/Debug
 /temp/obj/x64
 /Tests/x64/Release
-/Emuander Linux/Output/Temp/obj/x64
-/Emuander Windows/Output/Temp/x64/Debug
-/EmuanderCore Linux/Output/Temp/obj/x64
+VS*Projects/Emuander Linux/Output/Temp/obj/x64
+VS*Projects/Emuander Windows/Output/Temp/x64/Debug
+VS*Projects/EmuanderCore Linux/Output/Temp/obj/x64
 /examples/teste3.mem
 /Output
