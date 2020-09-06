@@ -4,23 +4,8 @@
 namespace Neander
 {
 	CComputer::CComputer() :
-		m_registers(0, 0, false, false),
-		m_memAccessCounter(0),
-		m_instructionCounter(0)
+		m_computerState()
 	{
-		// Zero initialize memory
-		std::fill(m_mainMemory.begin(), m_mainMemory.end(), 0);
-	}
-
-	void
-		CComputer::runProgram()
-	{
-		// While with initializer?
-		for (EProgramEnd programStatus = EProgramEnd::CONTINUE; (programStatus != EProgramEnd::HALT)
-			&& (m_registers.m_programCounter != 255u);)
-		{
-			programStatus = runStep();
-		}
 	}
 
 	CComputer::EProgramEnd
@@ -32,13 +17,19 @@ namespace Neander
 		// Instruction to be executed
 		const uint8_t instruction(fetchInstruction());
 		// Fetching an instruction we access the memory one time
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 		// Operation to be done
 		const std::function<CComputer::EProgramEnd()> operation(decodeInstruction(instruction));
 		programStatus = executeInstruction(operation);
 		updateConditionRegisters();
 		// Executed exactly one instruction
-		m_instructionCounter++;
+		m_computerState.m_instructionCounter++;
+
+		// Check if got to the end of memory
+		if (m_computerState.m_registers.m_programCounter == 255u)
+		{
+			programStatus = EProgramEnd::HALT;
+		}
 
 		return programStatus;
 	}
@@ -46,8 +37,8 @@ namespace Neander
 	void
 		CComputer::updateConditionRegisters()
 	{
-		m_registers.m_negativeCondition = (m_registers.m_accumulator > 127u);
-		m_registers.m_zeroCondition = (m_registers.m_accumulator == 0u);
+		m_computerState.m_registers.m_negativeCondition = (m_computerState.m_registers.m_accumulator > 127u);
+		m_computerState.m_registers.m_zeroCondition = (m_computerState.m_registers.m_accumulator == 0u);
 	}
 
 	uint8_t
@@ -56,7 +47,7 @@ namespace Neander
 		// Return value
 		uint8_t retVal;
 
-		retVal = m_mainMemory.at(m_registers.m_programCounter);
+		retVal = m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter);
 
 		return retVal;
 	}
@@ -78,7 +69,7 @@ namespace Neander
 			// Bind function to parameters
 			retVal =
 				std::bind([this](uint8_t op) { return storeOperation(op); },
-					m_mainMemory.at(m_registers.m_programCounter + 1));
+					m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter + 1));
 		}
 		// LDA
 		else if (instruction < static_cast<uint8_t>(EOperations::ADD))
@@ -86,7 +77,7 @@ namespace Neander
 			// Bind function to parameters
 			retVal =
 				std::bind([this](uint8_t op) { return loadOperation(op); },
-					m_mainMemory.at(m_registers.m_programCounter + 1));
+					m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter + 1));
 		}
 		// ADD
 		else if (instruction < static_cast<uint8_t>(EOperations::OR))
@@ -94,7 +85,7 @@ namespace Neander
 			// Bind function to parameters
 			retVal =
 				std::bind([this](uint8_t op) { return addOperation(op); },
-					m_mainMemory.at(m_registers.m_programCounter + 1));
+					m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter + 1));
 		}
 		// OR
 		else if (instruction < static_cast<uint8_t>(EOperations::AND))
@@ -102,7 +93,7 @@ namespace Neander
 			// Bind function to parameters
 			retVal =
 				std::bind([this](uint8_t op) { return orOperation(op); },
-					m_mainMemory.at(m_registers.m_programCounter + 1));
+					m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter + 1));
 		}
 		// AND
 		else if (instruction < static_cast<uint8_t>(EOperations::NOT))
@@ -110,7 +101,7 @@ namespace Neander
 			// Bind function to parameters
 			retVal =
 				std::bind([this](uint8_t op) { return andOperation(op); },
-					m_mainMemory.at(m_registers.m_programCounter + 1));
+					m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter + 1));
 		}
 		// NOT
 		else if (instruction < static_cast<uint8_t>(EOperations::JMP))
@@ -123,7 +114,7 @@ namespace Neander
 			// Bind function to parameters
 			retVal =
 				std::bind([this](uint8_t op) { return jmpOperation(op); },
-					m_mainMemory.at(m_registers.m_programCounter + 1));
+					m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter + 1));
 		}
 		// JN
 		else if (instruction < static_cast<uint8_t>(EOperations::JZ))
@@ -131,7 +122,7 @@ namespace Neander
 			// Bind function to parameters
 			retVal =
 				std::bind([this](uint8_t op) { return jnOperation(op); },
-					m_mainMemory.at(m_registers.m_programCounter + 1));
+					m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter + 1));
 		}
 		// JZ
 		else if (instruction < static_cast<uint8_t>(EOperations::HLT))
@@ -139,7 +130,7 @@ namespace Neander
 			// Bind function to parameters
 			retVal =
 				std::bind([this](uint8_t op) { return jzOperation(op); },
-					m_mainMemory.at(m_registers.m_programCounter + 1));
+					m_computerState.m_memory.at(m_computerState.m_registers.m_programCounter + 1));
 		}
 		// HLT
 		else
@@ -153,89 +144,89 @@ namespace Neander
 	CComputer::EProgramEnd
 		CComputer::nopOperation()
 	{
-		m_registers.m_programCounter++;
+		m_computerState.m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
 	CComputer::EProgramEnd
 		CComputer::storeOperation(const uint8_t value)
 	{
-		m_mainMemory[value] = m_registers.m_accumulator;
+		m_computerState.m_memory[value] = m_computerState.m_registers.m_accumulator;
 		// Next byte accessed
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 		// Store location accessed
-		m_memAccessCounter++;
-		m_registers.m_programCounter++;
-		m_registers.m_programCounter++;
+		m_computerState.m_memAccessCounter++;
+		m_computerState.m_registers.m_programCounter++;
+		m_computerState.m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
 	CComputer::EProgramEnd
 		CComputer::loadOperation(const uint8_t value)
 	{
-		m_registers.m_accumulator = m_mainMemory[value];
+		m_computerState.m_registers.m_accumulator = m_computerState.m_memory[value];
 		// Next byte accessed
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 		// Load location accessed
-		m_memAccessCounter++;
-		m_registers.m_programCounter++;
-		m_registers.m_programCounter++;
+		m_computerState.m_memAccessCounter++;
+		m_computerState.m_registers.m_programCounter++;
+		m_computerState.m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
 	CComputer::EProgramEnd
 		CComputer::addOperation(const uint8_t value)
 	{
-		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator + m_mainMemory[value]);
+		m_computerState.m_registers.m_accumulator = static_cast<uint8_t>(m_computerState.m_registers.m_accumulator + m_computerState.m_memory[value]);
 		// Next byte accessed
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 		// Memory address accessed
-		m_memAccessCounter++;
-		m_registers.m_programCounter++;
-		m_registers.m_programCounter++;
+		m_computerState.m_memAccessCounter++;
+		m_computerState.m_registers.m_programCounter++;
+		m_computerState.m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
 	CComputer::EProgramEnd
 		CComputer::orOperation(const uint8_t value)
 	{
-		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator | m_mainMemory[value]);
+		m_computerState.m_registers.m_accumulator = static_cast<uint8_t>(m_computerState.m_registers.m_accumulator | m_computerState.m_memory[value]);
 		// Next byte accessed
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 		// Memory address accessed
-		m_memAccessCounter++;
-		m_registers.m_programCounter++;
-		m_registers.m_programCounter++;
+		m_computerState.m_memAccessCounter++;
+		m_computerState.m_registers.m_programCounter++;
+		m_computerState.m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
 	CComputer::EProgramEnd
 		CComputer::andOperation(const uint8_t value)
 	{
-		m_registers.m_accumulator = static_cast<uint8_t>(m_registers.m_accumulator & m_mainMemory[value]);
+		m_computerState.m_registers.m_accumulator = static_cast<uint8_t>(m_computerState.m_registers.m_accumulator & m_computerState.m_memory[value]);
 		// Next byte accessed
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 		// Memory address accessed
-		m_memAccessCounter++;
-		m_registers.m_programCounter++;
-		m_registers.m_programCounter++;
+		m_computerState.m_memAccessCounter++;
+		m_computerState.m_registers.m_programCounter++;
+		m_computerState.m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
 	CComputer::EProgramEnd
 		CComputer::notOperation()
 	{
-		m_registers.m_accumulator = static_cast<uint8_t>(~m_registers.m_accumulator);
-		m_registers.m_programCounter++;
+		m_computerState.m_registers.m_accumulator = static_cast<uint8_t>(~m_computerState.m_registers.m_accumulator);
+		m_computerState.m_registers.m_programCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
 	CComputer::EProgramEnd
 		CComputer::jmpOperation(const uint8_t value)
 	{
-		m_registers.m_programCounter = value;
+		m_computerState.m_registers.m_programCounter = value;
 		// Next byte accessed
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 		return EProgramEnd::CONTINUE;
 	}
 
@@ -244,11 +235,11 @@ namespace Neander
 	{
 		// Contant uint8_t 2
 		const uint8_t c_2ui8(static_cast<uint8_t>(2));
-		(m_registers.m_accumulator >= 128u) ? 
-			m_registers.m_programCounter = value : 
-			m_registers.m_programCounter = static_cast<uint8_t>(m_registers.m_programCounter + c_2ui8);
+		(m_computerState.m_registers.m_accumulator >= 128u) ? 
+			m_computerState.m_registers.m_programCounter = value : 
+			m_computerState.m_registers.m_programCounter = static_cast<uint8_t>(m_computerState.m_registers.m_programCounter + c_2ui8);
 		// Next byte accessed
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 
 		return EProgramEnd::CONTINUE;
 	}
@@ -258,11 +249,11 @@ namespace Neander
 	{
 		// Contant uint8_t 2
 		const uint8_t c_2ui8(static_cast<uint8_t>(2));
-		(m_registers.m_accumulator == 0u) ?
-			m_registers.m_programCounter = value : 
-			m_registers.m_programCounter = static_cast<uint8_t>(m_registers.m_programCounter + c_2ui8);
+		(m_computerState.m_registers.m_accumulator == 0u) ?
+			m_computerState.m_registers.m_programCounter = value : 
+			m_computerState.m_registers.m_programCounter = static_cast<uint8_t>(m_computerState.m_registers.m_programCounter + c_2ui8);
 		// Next byte accessed
-		m_memAccessCounter++;
+		m_computerState.m_memAccessCounter++;
 
 		return EProgramEnd::CONTINUE;
 	}
@@ -270,7 +261,7 @@ namespace Neander
 	CComputer::EProgramEnd
 		CComputer::haltOperation()
 	{
-		m_registers.m_programCounter++;
+		m_computerState.m_registers.m_programCounter++;
 		return EProgramEnd::HALT;
 	};
 }

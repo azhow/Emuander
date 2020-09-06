@@ -6,7 +6,7 @@
 #include <utility>
 #include <functional>
 // Homemade Includes
-#include "SRegisters.h"
+#include "SNeanderComputerState.h"
 
 namespace Neander
 {
@@ -30,7 +30,7 @@ namespace Neander
 		};
 
 		// If the program has halted
-		enum class EProgramEnd
+		enum EProgramEnd
 		{
 			HALT = 0, // Program ended
 			CONTINUE = 1 // Program continue execution
@@ -43,32 +43,10 @@ namespace Neander
 		CComputer();
 
 		// Set main memory (load a program) returns true upon success
-		inline void setMemory(const std::array<uint8_t, ms_cMemorySize>& program) { m_mainMemory = program; };
+		inline void setMemory(const std::array<uint8_t, ms_cMemorySize>& program) { m_computerState.m_memory = program; };
 
 		// Get the contents of the memory, returns the contents of the memory
-		inline std::array<uint8_t, ms_cMemorySize> getMemory() const { return m_mainMemory; };
-
-		// Set the registers contents
-		inline void setRegisters(SRegisters newRegisters)
-		{
-			// Reset counters
-			m_memAccessCounter = 0;
-			m_instructionCounter = 0;
-			m_registers = newRegisters;
-			updateConditionRegisters();
-		};
-
-		// Get the registers contents
-		inline SRegisters getRegisters() const { return m_registers; };
-
-		// Get memory accesses counter
-		inline uint64_t getMemoryAccesses() const { return m_memAccessCounter; };
-
-		// Get instructions executed counter
-		inline uint64_t getInstructionsExecuted() const { return m_instructionCounter; };
-
-		// Run the contents of the memory in a while Fetch->Decode->Read->Execute
-		void runProgram();
+		inline const SNeanderComputerState& getComputerState() const { return m_computerState; };
 
 		// Execute one instruction of the while loop
 		EProgramEnd runStep();
@@ -127,17 +105,8 @@ namespace Neander
 		// Halt operation
 		EProgramEnd haltOperation();
 
-		// Computer registers
-		SRegisters m_registers;
-
-		// Main memory is the program running or nothing at all
-		std::array<uint8_t, ms_cMemorySize> m_mainMemory;
-
-		// Counts the number of memory accesses
-		uint64_t m_memAccessCounter;
-		
-		// Counts the number of instructions
-		uint64_t m_instructionCounter;
+		// Computer state
+		SNeanderComputerState m_computerState;
 	};
 }
 

@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\CComputer.h" />
-    <ClInclude Include="..\include\SRegisters.h" />
+    <ClCompile Include="..\..\src\CComputer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\CComputer.cpp" />
+    <ClInclude Include="..\..\include\CComputer.h" />
+    <ClInclude Include="..\..\include\SRegisters.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

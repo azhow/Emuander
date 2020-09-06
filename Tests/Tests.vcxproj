@@ -172,11 +172,6 @@
   <ItemGroup>
     <ClCompile Include="Tests.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EmuanderCore Windows\EmuanderCore Windows.vcxproj">
-      <Project>{9aad26d6-c69f-4092-8838-1d8e57abf106}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
